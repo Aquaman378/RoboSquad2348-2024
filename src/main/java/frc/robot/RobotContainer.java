@@ -41,6 +41,7 @@ public class RobotContainer {
   private final PWMSparkMax shooterHold = new PWMSparkMax(2);
   private final PWMSparkMax shooterFront = new PWMSparkMax(3);
   private final PWMSparkMax shooterBack = new PWMSparkMax(4);
+  private final PWMSparkMax ampShootah = new PWMSparkMax(5);
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -120,35 +121,42 @@ public class RobotContainer {
 
     if (driverXbox.leftTrigger().getAsBoolean()) {
       intake.set(1);
-    } else if (driverXbox.leftBumper().getAsBoolean()) {
-      hook.set(-1);
-    } else {
-      hook.set(0);
-    }
-
-    if (driverXbox.rightTrigger().getAsBoolean()) {
-      intake.set(1);
-      shooterHold.set(1);
-    } else if (driverXbox.rightBumper().getAsBoolean()) {
-      intake.set(-1);
-      shooterHold.set(-1);
-    } else if (driverXbox.y().getAsBoolean()) {
+      shooterHold.set(0.4);
       shooterFront.set(1);
-      shooterBack.set(1);
+    } else if (driverXbox.leftBumper().getAsBoolean()) {
+      intake.set(-1);
+      shooterHold.set(-0.4);
+      shooterFront.set(0);
     } else {
       intake.set(0);
       shooterHold.set(0);
       shooterFront.set(0);
+    }
+
+    if (driverXbox.rightTrigger().getAsBoolean()) {
+      hook.set(1);
+    } else if (driverXbox.rightBumper().getAsBoolean()) {
+      hook.set(-1);
+    } else {
+     hook.set(0);
+    }
+
+    if (driverXbox.y().getAsBoolean()) {
+      shooterBack.set(1);
+    } else {
       shooterBack.set(0);
     }
 
-    if(driverXbox.x().getAsBoolean()){
-      hook.set(1);
+    if (driverXbox.x().getAsBoolean()){
+      ampShootah.set(-2);
     }else if(driverXbox.b().getAsBoolean()){
-      hook.set(-1);
-    } else {
-      hook.set(0);
+      ampShootah.set(1);
+    }else{
+      ampShootah.set(0);
     }
+
+
+
   }
 
   /**
