@@ -121,16 +121,19 @@ public class RobotContainer {
 
     if (driverXbox.leftTrigger().getAsBoolean()) {
       intake.set(1);
-      shooterHold.set(0.4);
-      shooterFront.set(1);
+      shooterHold.set(0.5);
+      shooterFront.set(-0.6);
+      ampShootah.set(-1);
     } else if (driverXbox.leftBumper().getAsBoolean()) {
       intake.set(-1);
-      shooterHold.set(-0.4);
-      shooterFront.set(0);
+      shooterHold.set(-0.5);
+      shooterFront.set(-0.5);
+      ampShootah.set(1);
     } else {
       intake.set(0);
       shooterHold.set(0);
       shooterFront.set(0);
+      ampShootah.set(0);
     }
 
     if (driverXbox.rightTrigger().getAsBoolean()) {
@@ -141,21 +144,20 @@ public class RobotContainer {
      hook.set(0);
     }
 
+    //Top Wheel
     if (driverXbox.y().getAsBoolean()) {
       shooterBack.set(1);
+
     } else {
       shooterBack.set(0);
     }
-
-    if (driverXbox.x().getAsBoolean()){
-      ampShootah.set(-2);
-    }else if(driverXbox.b().getAsBoolean()){
-      ampShootah.set(1);
-    }else{
-      ampShootah.set(0);
+    
+    //Back Wheel
+    if (driverXbox.x().getAsBoolean()) {
+      shooterFront.set(1);
+    } else {
+      shooterFront.set(0);
     }
-
-
 
   }
 
