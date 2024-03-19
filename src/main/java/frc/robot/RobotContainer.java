@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
+import frc.robot.subsystems.HookSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.io.File;
 
@@ -34,14 +36,17 @@ public class RobotContainer {
   private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
       "swerve/neo"));
 
+  private final ShooterSubsystem shooter = new ShooterSubsystem(); 
+  private final HookSubsystem hook = new HookSubsystem();   
   // Replace with CommandPS4Controller or CommandJoystick if needed
   final CommandXboxController driverXbox = new CommandXboxController(0);
+  /* 
   private final PWMSparkMax hook = new PWMSparkMax(0);
   private final PWMSparkMax intake = new PWMSparkMax(1);
   private final PWMSparkMax shooterHold = new PWMSparkMax(2);
   private final PWMSparkMax shooterFront = new PWMSparkMax(3);
   private final PWMSparkMax shooterBack = new PWMSparkMax(4);
-  private final PWMSparkMax ampShootah = new PWMSparkMax(5);
+ */
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -110,6 +115,18 @@ public class RobotContainer {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
 
     driverXbox.a().onTrue((Commands.runOnce(drivebase::zeroGyro)));
+
+    driverXbox.leftBumper().whileTrue(Commands.run((shooter::intake)));
+    driverXbox.leftTrigger().whileTrue(Commands.run((shooter::outake)));
+
+    driverXbox.x().whileTrue(Commands.run((shooter::shooterLoad)));
+    driverXbox.y().whileTrue(Commands.run((shooter::shooterTop)));
+
+    driverXbox.rightBumper().whileTrue(Commands.run((hook::extend)));
+    driverXbox.rightTrigger().whileTrue(Commands.run((hook::retract)));
+
+
+
     // driverXbox.x().onTrue(Commands.runOnce(drivebase::addFakeVisionReading));
     /*
      * driverXbox.b().whileTrue(
@@ -119,21 +136,19 @@ public class RobotContainer {
      * // drivebase).repeatedly());
      */
 
+    /* 
     if (driverXbox.leftTrigger().getAsBoolean()) {
       intake.set(1);
       shooterHold.set(0.5);
       shooterFront.set(-0.6);
-      ampShootah.set(-1);
     } else if (driverXbox.leftBumper().getAsBoolean()) {
       intake.set(-1);
       shooterHold.set(-0.5);
       shooterFront.set(-0.5);
-      ampShootah.set(1);
     } else {
       intake.set(0);
       shooterHold.set(0);
       shooterFront.set(0);
-      ampShootah.set(0);
     }
 
     if (driverXbox.rightTrigger().getAsBoolean()) {
@@ -158,7 +173,7 @@ public class RobotContainer {
     } else {
       shooterFront.set(0);
     }
-
+    */
   }
 
   /**
