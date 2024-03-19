@@ -38,6 +38,8 @@ public class RobotContainer {
 
   private final ShooterSubsystem shooter = new ShooterSubsystem(); 
   private final HookSubsystem hook = new HookSubsystem();   
+
+
   // Replace with CommandPS4Controller or CommandJoystick if needed
   final CommandXboxController driverXbox = new CommandXboxController(0);
   /* 
@@ -46,7 +48,7 @@ public class RobotContainer {
   private final PWMSparkMax shooterHold = new PWMSparkMax(2);
   private final PWMSparkMax shooterFront = new PWMSparkMax(3);
   private final PWMSparkMax shooterBack = new PWMSparkMax(4);
- */
+  */
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -119,12 +121,21 @@ public class RobotContainer {
     driverXbox.leftBumper().whileTrue(Commands.run((shooter::intake)));
     driverXbox.leftTrigger().whileTrue(Commands.run((shooter::outake)));
 
+    driverXbox.leftBumper().whileFalse(Commands.runOnce((shooter::zero)));
+    driverXbox.leftTrigger().whileFalse(Commands.runOnce((shooter::zero)));
+
     driverXbox.x().whileTrue(Commands.run((shooter::shooterLoad)));
     driverXbox.y().whileTrue(Commands.run((shooter::shooterTop)));
+
+    driverXbox.x().whileFalse(Commands.runOnce((shooter::zero)));
+    driverXbox.y().whileFalse(Commands.runOnce((shooter::zero)));
 
     driverXbox.rightBumper().whileTrue(Commands.run((hook::extend)));
     driverXbox.rightTrigger().whileTrue(Commands.run((hook::retract)));
 
+    driverXbox.rightBumper().whileFalse(Commands.runOnce((hook::zero)));
+    driverXbox.rightTrigger().whileFalse(Commands.runOnce((hook::zero)));
+  
 
 
     // driverXbox.x().onTrue(Commands.runOnce(drivebase::addFakeVisionReading));
