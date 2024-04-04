@@ -12,10 +12,7 @@ import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-<<<<<<< HEAD
-=======
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
->>>>>>> 4ddf4e6b213df469333218aec2ea5333b87ac3a9
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -48,7 +45,6 @@ public class RobotContainer {
   private final ShooterSubsystem shooter = new ShooterSubsystem(); 
   private final HookSubsystem hook = new HookSubsystem();   
 
-  private final SendableChooser<Command> autoChooser;
 
   private final SendableChooser<Command> autoChooser;
   
