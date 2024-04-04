@@ -23,7 +23,7 @@ public class Robot extends TimedRobot
 {
 
   private static Robot   instance;
-  private        Command m_autonomousCommand;
+  private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
 
@@ -53,6 +53,23 @@ public class Robot extends TimedRobot
     // Create a timer to disable motor brake a few seconds after disable.  This will let the robot stop
     // immediately when disabled, but then also let it be pushed more 
     disabledTimer = new Timer();
+      try {
+       arduino = new SerialPort(9600, SerialPort.Port.kUSB);
+       System.out.println("Connected on kUSB1!");
+      } catch (Exception e1){
+        System.out.println("Failed to connect on kUSB1, Trying kUSB2");
+
+        try {
+          arduino = new SerialPort(9600, SerialPort.Port.kUSB);
+          System.out.println("Connected on kUSB2!");
+         } catch (Exception e2){
+           System.out.println("Failed to connect on kUSB2, all connection failed");
+   
+        }
+      }
+   }
+   timer = new Timer();
+   timer.start(); 
   }
 
   /**
@@ -71,6 +88,15 @@ public class Robot extends TimedRobot
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
     //m_robotContainer.configureBindings();
+    if(timer.get() > 5){
+      System.out.println("Wrote to Arduino");
+      arduino.write(new byte[] {0x12}, 1);
+      timer.reset();
+    }
+
+    if(arduino.getBytesRecieved() > 0) {
+      System.out.println(arduino.readString());
+    }
   }
 
   /**
@@ -87,8 +113,7 @@ public class Robot extends TimedRobot
   @Override
   public void disabledPeriodic()
   {
-    if (disabledTimer.hasElapsed(Constants.DrivebaseConstants.WHEEL_LOCK_TIME))
-    {
+    if (disabledTimer.hasElapsed(Constants.DrivebaseConstants.WHEEL_LOCK_TIME)){
       m_robotContainer.setMotorBrake(false);
       disabledTimer.stop();
     }
@@ -139,6 +164,7 @@ public class Robot extends TimedRobot
   @Override
   public void teleopPeriodic()
   {
+
   }
 
   @Override
