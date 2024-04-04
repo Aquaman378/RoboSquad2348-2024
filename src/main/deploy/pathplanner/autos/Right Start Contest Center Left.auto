@@ -1,0 +1,61 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.383130458568611,
+      "y": 4.2921201227017844
+    },
+    "rotation": 0.0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Right Start to Speaker"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Speaker to Middle Note Blue"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Middle Note To Speaker Blue"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Speaker to Right Note Blue"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Right Note to Speaker Blue"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Speaker to Center Left Note Blue"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Center Left Note to Speaker Blue"
+          }
+        }
+      ]
+    }
+  },
+  "folder": "Start Right",
+  "choreoAuto": false
+}

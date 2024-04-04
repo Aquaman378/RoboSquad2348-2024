@@ -22,6 +22,8 @@ import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.io.File;
 
+import com.pathplanner.lib.auto.NamedCommands;
+
 /**
  * This class is where the bulk of the robot should be declared. Since
  * Command-based is a "declarative" paradigm, very
@@ -96,8 +98,14 @@ public class RobotContainer {
         () -> -MathUtil.applyDeadband(driverXbox.getLeftX(), OperatorConstants.LEFT_X_DEADBAND),
         () -> -driverXbox.getRawAxis(2));
 
+    ShooterSubsystem shooter = new ShooterSubsystem();
+
     drivebase.setDefaultCommand(
         !RobotBase.isSimulation() ? driveFieldOrientedDirectAngle : driveFieldOrientedDirectAngleSim);
+    // Register Named Commands
+    NamedCommands.registerCommand("rev", shooter.shooterTopCommand());
+    NamedCommands.registerCommand("shoot", shooter.shooterLoadCommand());
+    NamedCommands.registerCommand("intake", shooter.intakeCommand());
   }
 
   /**

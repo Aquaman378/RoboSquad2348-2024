@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ShooterSubsystem extends SubsystemBase{
@@ -31,5 +32,21 @@ public class ShooterSubsystem extends SubsystemBase{
         shooterBack.set(0);
         shooterHold.set(0);
         shooterFront.set(0);
+    }
+
+    public Command shooterTopCommand(){
+        //shooterFront.set(1);
+        //Command cm = new Command();
+        //shooterFront.
+        System.out.println("RUNNING");
+        return this.runOnce(() -> shooterBack.set(-1));
+    }
+
+    public Command intakeCommand(){
+        return this.runOnce(() -> intake.set(-1));
+    }
+
+    public Command shooterLoadCommand(){
+        return this.runOnce(() -> shooterFront.set(1));
     }
 }
