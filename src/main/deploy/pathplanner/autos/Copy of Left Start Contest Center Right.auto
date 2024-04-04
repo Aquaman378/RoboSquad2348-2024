@@ -1,0 +1,73 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 0.7987428243044774,
+      "y": 6.75715268691593
+    },
+    "rotation": 61.23235066115621
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "named",
+          "data": {
+            "name": "rev"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "shoot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Left Start to Left Note Blue"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Left Note to Speaker Blue"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Speaker to Middle Note Blue"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Middle Note To Speaker Blue"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Speaker to Center Right Note Blue"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Center Right Note to Speaker Blue"
+          }
+        }
+      ]
+    }
+  },
+  "folder": "Start Right",
+  "choreoAuto": false
+}
