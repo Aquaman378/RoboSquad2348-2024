@@ -72,11 +72,6 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
 
-<<<<<<< HEAD
-    autoChooser = AutoBuilder.buildAutoChooser();
-    SmartDashboard.putData("Auto Chooser", autoChooser);
-
-=======
 
     autoChooser = AutoBuilder.buildAutoChooser();
     // Another option that allows you to specify the default auto by its name
@@ -84,7 +79,6 @@ public class RobotContainer {
     SmartDashboard.putData("Auto Chooser", autoChooser);
 
 
->>>>>>> 4ddf4e6b213df469333218aec2ea5333b87ac3a9
     AbsoluteDriveAdv closedAbsoluteDriveAdv = new AbsoluteDriveAdv(drivebase,
         () -> -MathUtil.applyDeadband(driverXbox.getLeftY(),
             OperatorConstants.LEFT_Y_DEADBAND),
@@ -227,16 +221,11 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-<<<<<<< HEAD
-    //return drivebase.getAutonomousCommand("New Auto");
-    return autoChooser.getSelected();
-=======
 
 
     //return drivebase.getAutonomousCommand("New Auto");
     return autoChooser.getSelected();
     //return new PathPlannerAuto("Example Auto");
->>>>>>> 4ddf4e6b213df469333218aec2ea5333b87ac3a9
   }
 
   public void setDriveMode() {
